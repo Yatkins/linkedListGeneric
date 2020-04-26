@@ -1,6 +1,6 @@
 package edu.ti.collections.list.linked;
 
-public class LinkedList<T> {
+public class RecursionLinkedList<T> {
     private class Node {
         T payload;
         Node next = null;
@@ -31,11 +31,11 @@ public class LinkedList<T> {
     //endnode never changes, its at the end, we add to the front.
     Node endNode = null;
 
-    public LinkedList() {
+    public RecursionLinkedList() {
         // nothing
     }
 
-    public LinkedList(T payload) {
+    public RecursionLinkedList(T payload) {
         head = new Node(payload);
         endNode = head;
     }
@@ -45,20 +45,22 @@ public class LinkedList<T> {
     }
 
     public int size() {
-        int size = 0;
-        for (Node start = head; start != null; start = start.next) {
-            size += 1;
-        }
+        return sizeHelper(head);
+    }
+
+    private int sizeHelper(Node node){
+        int size = (node == null)? 0 : 1 + sizeHelper(node.next);
         return size;
     }
 
-        //while head != null
+    //while head != null
     public Node end() {
-        Node endNode = head;
-        while (endNode.getNext() != null) {
-            endNode = endNode.getNext();
-        }
-        return endNode;
+        return lastNode(endNode);
+    }
+
+    private Node lastNode(Node node){
+        Node lastNode = (node==null)?null:(node.next == null)?node:lastNode(node.next);
+        return lastNode;
     }
 
     public void insert(T object) {
@@ -84,13 +86,13 @@ public class LinkedList<T> {
     public T get(int n) {
         T requestedObject = null;
         if (n < size()) {
-            Node requestedNode = head;
-            while (n-- > 0) {
-                requestedNode = requestedNode.getNext();
-            }
-            requestedObject = requestedNode.getPayload();
-        }
-        return requestedObject;
+           requestedObject = getRequestedObject(n, head).getPayload();
+        }return requestedObject;
+    }
+
+    private Node getRequestedObject(int n, Node node){
+        Node requestedNode = (n==0)?node:getRequestedObject(n-1, node.next);
+        return requestedNode;
     }
 
     public T remove(int n) {

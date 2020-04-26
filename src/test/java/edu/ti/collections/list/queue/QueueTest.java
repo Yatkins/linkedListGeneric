@@ -42,7 +42,7 @@ public class QueueTest {
     }
 
     @Test
-    public void testPopIsPush() {
+    public void testDequeIsEmpty() {
         Queue<Person> queue = new Queue<>();
         Person alice = new Person("Smith", "Alice");
         Person bob = new Person("Smith", "Bob");

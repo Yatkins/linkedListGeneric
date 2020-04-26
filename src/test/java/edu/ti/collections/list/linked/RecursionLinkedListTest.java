@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LinkedListTest {
+public class RecursionLinkedListTest {
     @Test
     public void testNewEmptyListIsEmpty() {
         LinkedList<Integer> linkedList = new LinkedList<>();

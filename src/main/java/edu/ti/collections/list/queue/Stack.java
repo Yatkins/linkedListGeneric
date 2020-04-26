@@ -2,7 +2,7 @@ package edu.ti.collections.list.queue;
 
 import edu.ti.collections.list.linked.LinkedList;
 
-//a Stack is also known as a LIFO queue (Last In First Out)
+//a Stack is LIFO
 public class Stack<T> {
     private LinkedList<T> list = new LinkedList<>();
 
@@ -16,7 +16,7 @@ public class Stack<T> {
 
     public T pop() {
         T retval;
-        retval = list.get(0);
+        retval = list.remove(0);
         return retval;
     }
 
